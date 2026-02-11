@@ -1,7 +1,7 @@
 // Content Discovery App - 极简设计
 
 const mockData = [
-    // 首卡 - AI 洞察卡（真正有价值的信息）
+    // 首卡 - AI 智能推荐（科技感设计）
     {
         id: 0,
         type: 'daily-ai',
@@ -10,14 +10,11 @@ const mockData = [
         weekday: '周一',
         weather: '晴',
         temperature: '24°C',
-        weatherIcon: 'sunny',
-        aiInsight: '你的品味正在进化',
-        aiData: [
-            { label: '今日热度', value: '+89%', trend: 'up' },
-            { label: '新趋势', value: '极简风', tag: 'hot' },
-            { label: '适合你', value: '3 个灵感', icon: '💡' }
-        ],
-        aiMessage: '基于你最近收藏的北欧家居和简约穿搭，为你找到了同类型达人的私藏好物',
+        aiTitle: 'AI 为你推荐',
+        aiScore: '98',
+        aiMatches: '12',
+        aiTrend: '+156%',
+        aiInsight: '你关注的"极简美学"正在流行',
         backgroundImage: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&h=1200&fit=crop'
     },
     // 精品内容卡片 - 简洁设计
@@ -124,17 +121,13 @@ class DiscoveryApp {
         card.innerHTML = `
             <img src="${data.backgroundImage}" alt="Daily AI" class="ai-background-image">
             <div class="ai-overlay"></div>
-            <div class="ai-particles">
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-            </div>
+            
+            <!-- 扫描线效果 -->
+            <div class="scan-line"></div>
             
             <!-- 顶部信息栏 -->
             <div class="ai-top-bar">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                     <circle cx="12" cy="10" r="3"/>
                 </svg>
@@ -142,58 +135,60 @@ class DiscoveryApp {
                 <span class="divider">|</span>
                 <span>${data.date} ${data.weekday}</span>
                 <span class="divider">|</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <circle cx="12" cy="12" r="5"/>
-                    <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"/>
-                    <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"/>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"/>
-                    <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"/>
-                    <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"/>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"/>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"/>
-                </svg>
-                <span>${data.temperature} ${data.weather}</span>
+                <span>☀️ ${data.temperature} ${data.weather}</span>
             </div>
             
-            <!-- 左侧天气卡片 -->
-            <div class="weather-card">
-                <svg width="45" height="45" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="5" fill="url(#sunGradient)"/>
-                    <g stroke="url(#sunGradient)" stroke-width="2" stroke-linecap="round">
-                        <line x1="12" y1="1" x2="12" y2="3"/>
-                        <line x1="12" y1="21" x2="12" y2="23"/>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                        <line x1="1" y1="12" x2="3" y2="12"/>
-                        <line x1="21" y1="12" x2="23" y2="12"/>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-                    </g>
-                    <defs>
-                        <linearGradient id="sunGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#FFD54F"/>
-                            <stop offset="100%" style="stop-color:#FFA726"/>
-                        </linearGradient>
-                    </defs>
-                </svg>
-            </div>
-            
-            <!-- 底部 AI 洞察卡片 -->
-            <div class="ai-insight-card">
-                <div class="insight-header">
-                    <span class="insight-icon">✨</span>
-                    <h3 class="insight-title">${data.aiInsight}</h3>
+            <!-- AI 智能卡片 -->
+            <div class="ai-smart-card">
+                <!-- AI 标识 -->
+                <div class="ai-badge">
+                    <div class="ai-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7v10c0 5.5 3.8 10.7 10 12 6.2-1.3 10-6.5 10-12V7l-10-5z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
+                    <span>AI</span>
                 </div>
-                <div class="insight-data">
-                    ${data.aiData.map(item => `
-                        <div class="data-item">
-                            <span class="data-label">${item.label}</span>
-                            <span class="data-value ${item.trend || ''}">${item.value}</span>
+                
+                <!-- 核心数据 -->
+                <div class="ai-core-data">
+                    <div class="score-circle">
+                        <svg class="score-ring" viewBox="0 0 100 100">
+                            <defs>
+                                <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#667eea"/>
+                                    <stop offset="100%" style="stop-color:#764ba2"/>
+                                </linearGradient>
+                            </defs>
+                            <circle class="score-bg" cx="50" cy="50" r="40"/>
+                            <circle class="score-progress" cx="50" cy="50" r="40" style="stroke-dashoffset: ${251 - (251 * data.aiScore / 100)}"/>
+                        </svg>
+                        <div class="score-text">
+                            <div class="score-number">${data.aiScore}</div>
+                            <div class="score-label">匹配度</div>
                         </div>
-                    `).join('')}
+                    </div>
+                    
+                    <div class="data-stats">
+                        <div class="stat-row">
+                            <span class="stat-icon">📊</span>
+                            <span class="stat-label">热度趋势</span>
+                            <span class="stat-value green">${data.aiTrend}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-icon">💡</span>
+                            <span class="stat-label">精选内容</span>
+                            <span class="stat-value">${data.aiMatches} 条</span>
+                        </div>
+                    </div>
                 </div>
-                <p class="insight-message">${data.aiMessage}</p>
+                
+                <!-- AI 洞察 -->
+                <div class="ai-message">
+                    <span class="pulse-dot"></span>
+                    ${data.aiInsight}
+                </div>
             </div>
         `;
         return card;

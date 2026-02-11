@@ -1,0 +1,225 @@
+/* AI Card - 科技感设计 */
+
+/* 扫描线效果 */
+.scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        rgba(102, 126, 234, 0.8) 50%,
+        transparent 100%
+    );
+    z-index: 8;
+    animation: scanMove 3s linear infinite;
+}
+
+@keyframes scanMove {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(340px);
+        opacity: 0;
+    }
+}
+
+/* AI 智能卡片 */
+.ai-smart-card {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    padding: 14px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(30px);
+    border-radius: 16px;
+    z-index: 10;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    animation: cardSlideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s backwards;
+}
+
+/* AI 标识 */
+.ai-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+.ai-icon {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+/* 核心数据区 */
+.ai-core-data {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+/* 分数圆环 */
+.score-circle {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.score-ring {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.score-bg {
+    fill: none;
+    stroke: rgba(102, 126, 234, 0.2);
+    stroke-width: 6;
+}
+
+.score-progress {
+    fill: none;
+    stroke: url(#scoreGradient);
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-dasharray: 251;
+    animation: scoreAnimation 2s ease-out forwards;
+}
+
+@keyframes scoreAnimation {
+    from {
+        stroke-dashoffset: 251;
+    }
+}
+
+.score-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.score-number {
+    font-size: 24px;
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.score-label {
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 2px;
+}
+
+/* 数据统计 */
+.data-stats {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.stat-icon {
+    font-size: 14px;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    flex: 1;
+}
+
+.stat-value {
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+}
+
+.stat-value.green {
+    color: #10b981;
+}
+
+/* AI 洞察消息 */
+.ai-message {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: rgba(102, 126, 234, 0.15);
+    border-radius: 10px;
+    font-size: 11px;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+.pulse-dot {
+    width: 6px;
+    height: 6px;
+    background: #10b981;
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: pulseDot 2s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+        box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+    }
+}
+
+/* SVG 渐变定义 */
+defs {
+    display: none;
+}
