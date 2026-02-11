@@ -119,6 +119,13 @@ class DiscoveryApp {
         card.innerHTML = `
             <img src="${data.backgroundImage}" alt="Daily AI" class="ai-background-image">
             <div class="ai-overlay"></div>
+            <div class="ai-particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
             
             <!-- 顶部信息栏 -->
             <div class="ai-top-bar">

@@ -133,11 +133,24 @@ body {
     transform: scale(0.98);
 }
 
-/* Daily AI Card - 仿照参考图设计 */
+/* Daily AI Card - 超级惊艳设计 */
 .daily-ai-card {
     position: relative;
-    min-height: 400px;
+    min-height: 450px;
     overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    animation: cardEntrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes cardEntrance {
+    0% {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 .ai-background-image {
@@ -147,7 +160,17 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.95);
+    filter: brightness(0.95) saturate(1.2);
+    animation: imageZoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes imageZoom {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.05);
+    }
 }
 
 .ai-overlay {
@@ -156,7 +179,21 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
+    background: linear-gradient(135deg, 
+        rgba(102, 126, 234, 0.1) 0%, 
+        rgba(118, 75, 162, 0.15) 50%,
+        rgba(0,0,0,0.3) 100%
+    );
+    animation: overlayPulse 8s ease-in-out infinite;
+}
+
+@keyframes overlayPulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.95;
+    }
 }
 
 /* 顶部信息栏 */
@@ -194,14 +231,37 @@ body {
     left: 12px;
     width: 90px;
     height: 90px;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(30px);
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 2;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 24px rgba(255, 165, 38, 0.3);
+    animation: weatherFloat 3s ease-in-out infinite;
+}
+
+@keyframes weatherFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(5deg);
+    }
+}
+
+.weather-card svg {
+    animation: sunRotate 20s linear infinite;
+}
+
+@keyframes sunRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* AI 推荐卡片 */
@@ -210,30 +270,128 @@ body {
     bottom: 12px;
     left: 12px;
     right: 12px;
-    padding: 16px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
+    padding: 18px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(30px);
     border-radius: 20px;
     z-index: 2;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    animation: cardSlideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s backwards;
+}
+
+@keyframes cardSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .ai-sparkle {
-    font-size: 20px;
+    font-size: 24px;
     margin-bottom: 8px;
+    display: inline-block;
+    animation: sparkleRotate 2s ease-in-out infinite;
+}
+
+@keyframes sparkleRotate {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+    }
+    25% {
+        transform: rotate(10deg) scale(1.1);
+    }
+    75% {
+        transform: rotate(-10deg) scale(1.1);
+    }
 }
 
 .ai-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 6px;
+    font-size: 16px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
 }
 
 .ai-description {
-    font-size: 11px;
-    line-height: 1.5;
+    font-size: 12px;
+    line-height: 1.6;
     color: #666;
+    font-weight: 400;
+}
+
+/* 粒子效果 */
+.ai-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: particleFloat 4s ease-in-out infinite;
+}
+
+.particle:nth-child(1) {
+    top: 20%;
+    left: 15%;
+    animation-delay: 0s;
+    animation-duration: 3s;
+}
+
+.particle:nth-child(2) {
+    top: 40%;
+    right: 20%;
+    animation-delay: 1s;
+    animation-duration: 4s;
+}
+
+.particle:nth-child(3) {
+    bottom: 30%;
+    left: 25%;
+    animation-delay: 0.5s;
+    animation-duration: 3.5s;
+}
+
+.particle:nth-child(4) {
+    top: 60%;
+    right: 30%;
+    animation-delay: 1.5s;
+    animation-duration: 4.5s;
+}
+
+.particle:nth-child(5) {
+    bottom: 45%;
+    left: 40%;
+    animation-delay: 2s;
+    animation-duration: 3.8s;
+}
+
+@keyframes particleFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-20px) scale(1.5);
+        opacity: 0.8;
+    }
 }
 
 /* Content Card */
