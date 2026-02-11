@@ -153,7 +153,7 @@ class DiscoveryApp {
     createAIHeroCard(data) {
         const card = document.createElement('div');
         card.className = 'card ai-hero-card';
-        card.style.gridColumn = 'span 2';
+        card.style.gridColumn = '1 / -1'; // 占据整行
         
         const hour = new Date().getHours();
         const greeting = hour < 12 ? '早安' : hour < 18 ? '午安' : '晚安';
