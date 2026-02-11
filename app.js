@@ -1,7 +1,7 @@
 // Content Discovery App - 极简设计
 
 const mockData = [
-    // 首卡 - AI 每日推荐（仿照参考图设计）
+    // 首卡 - AI 洞察卡（真正有价值的信息）
     {
         id: 0,
         type: 'daily-ai',
@@ -11,8 +11,13 @@ const mockData = [
         weather: '晴',
         temperature: '24°C',
         weatherIcon: 'sunny',
-        aiTitle: '今日智能推荐',
-        aiDescription: '基于你的浏览偏好，为你精选12条优质内容，涵盖家居美学、时尚穿搭与科技前沿。',
+        aiInsight: '你的品味正在进化',
+        aiData: [
+            { label: '今日热度', value: '+89%', trend: 'up' },
+            { label: '新趋势', value: '极简风', tag: 'hot' },
+            { label: '适合你', value: '3 个灵感', icon: '💡' }
+        ],
+        aiMessage: '基于你最近收藏的北欧家居和简约穿搭，为你找到了同类型达人的私藏好物',
         backgroundImage: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&h=1200&fit=crop'
     },
     // 精品内容卡片 - 简洁设计
@@ -174,11 +179,21 @@ class DiscoveryApp {
                 </svg>
             </div>
             
-            <!-- 底部 AI 推荐卡片 -->
-            <div class="ai-recommendation-card">
-                <div class="ai-sparkle">✨</div>
-                <h3 class="ai-title">${data.aiTitle}</h3>
-                <p class="ai-description">${data.aiDescription}</p>
+            <!-- 底部 AI 洞察卡片 -->
+            <div class="ai-insight-card">
+                <div class="insight-header">
+                    <span class="insight-icon">✨</span>
+                    <h3 class="insight-title">${data.aiInsight}</h3>
+                </div>
+                <div class="insight-data">
+                    ${data.aiData.map(item => `
+                        <div class="data-item">
+                            <span class="data-label">${item.label}</span>
+                            <span class="data-value ${item.trend || ''}">${item.value}</span>
+                        </div>
+                    `).join('')}
+                </div>
+                <p class="insight-message">${data.aiMessage}</p>
             </div>
         `;
         return card;

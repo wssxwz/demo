@@ -136,7 +136,7 @@ body {
 /* Daily AI Card - 超级惊艳设计 */
 .daily-ai-card {
     position: relative;
-    min-height: 450px;
+    aspect-ratio: 1 / 1.35;
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     animation: cardEntrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -264,13 +264,13 @@ body {
     }
 }
 
-/* AI 推荐卡片 */
-.ai-recommendation-card {
+/* AI 洞察卡片 */
+.ai-insight-card {
     position: absolute;
     bottom: 12px;
     left: 12px;
     right: 12px;
-    padding: 18px;
+    padding: 16px;
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(30px);
     border-radius: 20px;
@@ -291,10 +291,15 @@ body {
     }
 }
 
-.ai-sparkle {
-    font-size: 24px;
-    margin-bottom: 8px;
-    display: inline-block;
+.insight-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.insight-icon {
+    font-size: 20px;
     animation: sparkleRotate 2s ease-in-out infinite;
 }
 
@@ -310,22 +315,54 @@ body {
     }
 }
 
-.ai-title {
-    font-size: 16px;
+.insight-title {
+    font-size: 15px;
     font-weight: 800;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 8px;
-    letter-spacing: 0.3px;
 }
 
-.ai-description {
-    font-size: 12px;
-    line-height: 1.6;
+.insight-data {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.data-item {
+    flex: 1;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+    padding: 8px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.data-label {
+    display: block;
+    font-size: 9px;
+    color: #999;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.data-value {
+    display: block;
+    font-size: 14px;
+    font-weight: 800;
+    color: #1a1a1a;
+}
+
+.data-value.up {
+    color: #10b981;
+}
+
+.insight-message {
+    font-size: 11px;
+    line-height: 1.5;
     color: #666;
-    font-weight: 400;
 }
 
 /* 粒子效果 */
