@@ -158,7 +158,7 @@ class DiscoveryApp {
             
             <!-- 左侧天气卡片 -->
             <div class="weather-card">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
+                <svg width="45" height="45" viewBox="0 0 24 24" fill="none">
                     <circle cx="12" cy="12" r="5" fill="url(#sunGradient)"/>
                     <g stroke="url(#sunGradient)" stroke-width="2" stroke-linecap="round">
                         <line x1="12" y1="1" x2="12" y2="3"/>
