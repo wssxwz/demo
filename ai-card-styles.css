@@ -1,5 +1,35 @@
 /* AI Card - 科技感设计 */
 
+/* 顶部信息栏 */
+.ai-top-bar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 14px;
+    font-size: 10px;
+    font-weight: 500;
+    color: #666;
+    z-index: 10;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.ai-top-bar svg {
+    flex-shrink: 0;
+}
+
+.divider {
+    color: #ddd;
+}
+
 /* 扫描线效果 */
 .scan-line {
     position: absolute;
