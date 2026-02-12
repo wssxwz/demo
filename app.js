@@ -1,7 +1,7 @@
 // Content Discovery App - 极简设计
 
 const mockData = [
-    // 首卡 - AI 智能推荐（科技感设计）
+    // 首卡 - 今日推荐（真实内容预告）
     {
         id: 0,
         type: 'daily-ai',
@@ -10,11 +10,12 @@ const mockData = [
         weekday: '周一',
         weather: '晴',
         temperature: '24°C',
-        aiTitle: 'AI 为你推荐',
-        aiScore: '98',
-        aiMatches: '12',
-        aiTrend: '+156%',
-        aiInsight: '你关注的"极简美学"正在流行',
+        highlights: [
+            { emoji: '🏠', title: '北欧风客厅改造', author: '@家居达人Lily' },
+            { emoji: '👗', title: '早春穿搭配色指南', author: '@时尚博主Anna' },
+            { emoji: '📱', title: 'AirPods Pro 2 深度体验', author: '@科技评测君' }
+        ],
+        aiTag: 'AI 精选',
         backgroundImage: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&h=1200&fit=crop'
     },
     // 精品内容卡片 - 简洁设计
@@ -138,56 +139,23 @@ class DiscoveryApp {
                 <span>☀️ ${data.temperature} ${data.weather}</span>
             </div>
             
-            <!-- AI 智能卡片 -->
-            <div class="ai-smart-card">
-                <!-- AI 标识 -->
-                <div class="ai-badge">
-                    <div class="ai-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2L2 7v10c0 5.5 3.8 10.7 10 12 6.2-1.3 10-6.5 10-12V7l-10-5z"/>
-                            <circle cx="12" cy="12" r="3"/>
-                        </svg>
-                    </div>
-                    <span>AI</span>
+            <!-- 今日推荐卡片 -->
+            <div class="daily-card">
+                <div class="daily-header">
+                    <span class="ai-tag">✨ ${data.aiTag}</span>
+                    <span class="daily-title">今日为你推荐</span>
                 </div>
                 
-                <!-- 核心数据 -->
-                <div class="ai-core-data">
-                    <div class="score-circle">
-                        <svg class="score-ring" viewBox="0 0 100 100">
-                            <defs>
-                                <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#667eea"/>
-                                    <stop offset="100%" style="stop-color:#764ba2"/>
-                                </linearGradient>
-                            </defs>
-                            <circle class="score-bg" cx="50" cy="50" r="40"/>
-                            <circle class="score-progress" cx="50" cy="50" r="40" style="stroke-dashoffset: ${251 - (251 * data.aiScore / 100)}"/>
-                        </svg>
-                        <div class="score-text">
-                            <div class="score-number">${data.aiScore}</div>
-                            <div class="score-label">匹配度</div>
+                <div class="highlights-list">
+                    ${data.highlights.map(item => `
+                        <div class="highlight-item">
+                            <span class="highlight-emoji">${item.emoji}</span>
+                            <div class="highlight-info">
+                                <div class="highlight-title">${item.title}</div>
+                                <div class="highlight-author">${item.author}</div>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="data-stats">
-                        <div class="stat-row">
-                            <span class="stat-icon">📊</span>
-                            <span class="stat-label">热度趋势</span>
-                            <span class="stat-value green">${data.aiTrend}</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-icon">💡</span>
-                            <span class="stat-label">精选内容</span>
-                            <span class="stat-value">${data.aiMatches} 条</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- AI 洞察 -->
-                <div class="ai-message">
-                    <span class="pulse-dot"></span>
-                    ${data.aiInsight}
+                    `).join('')}
                 </div>
             </div>
         `;
